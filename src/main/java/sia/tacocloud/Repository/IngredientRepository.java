@@ -1,4 +1,10 @@
 package sia.tacocloud.Repository;
 
-public class IngredientRepository {
+import sia.tacocloud.Ingredient;
+
+public interface IngredientRepository {
+
+    Iterable<Ingredient> findAll();
+
+
 }
