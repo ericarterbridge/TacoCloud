@@ -1,4 +1,7 @@
 package sia.tacocloud.Repository;
 
-public class JdbcIngredientRepository {
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class JdbcIngredientRepository implements IngredientRepository {
 }
