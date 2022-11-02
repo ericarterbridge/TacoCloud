@@ -1,6 +1,7 @@
 package sia.tacocloud.Controller;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import sia.tacocloud.Ingredient;
 import sia.tacocloud.Ingredient.Type;
+import sia.tacocloud.Repository.JdbcIngredientRepository;
 import sia.tacocloud.Taco;
 import sia.tacocloud.TacoCloudApplication;
 
@@ -24,6 +26,13 @@ import java.util.stream.Collectors;
 @RequestMapping("/design")
 @SessionAttributes("order")
 public class DesignTacoController {
+
+    private final JdbcIngredientRepository ingredientRepo;
+
+    @Autowired
+    public DesignTacoController(JdbcIngredientRepository ingredientRepo){
+        this.ingredientRepo = ingredientRepo;
+    }
 
     @GetMapping
     public String showDesignForm(Model model) {
