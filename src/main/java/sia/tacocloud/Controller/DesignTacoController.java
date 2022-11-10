@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import sia.tacocloud.Ingredient;
 import sia.tacocloud.Ingredient.Type;
 import sia.tacocloud.Repository.JdbcIngredientRepository;
+import sia.tacocloud.Repository.TacoRepository;
 import sia.tacocloud.Taco;
 import sia.tacocloud.TacoCloudApplication;
 
@@ -29,10 +30,12 @@ import java.util.stream.Collectors;
 public class DesignTacoController {
 
     private final JdbcIngredientRepository ingredientRepo;
+    private TacoRepository designRepo;
 
     @Autowired
-    public DesignTacoController(JdbcIngredientRepository ingredientRepo){
+    public DesignTacoController(JdbcIngredientRepository ingredientRepo, TacoRepository designRepo){
         this.ingredientRepo = ingredientRepo;
+        this.designRepo = designRepo;
     }
 
     @GetMapping
