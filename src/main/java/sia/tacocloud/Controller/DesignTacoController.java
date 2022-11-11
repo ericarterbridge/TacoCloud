@@ -59,6 +59,11 @@ public class DesignTacoController {
         return new Order();
     }
 
+    @ModelAttribute(name = "taco")
+    public Taco taco(){
+        return new Taco();
+    }
+
     @PostMapping
     public String processDesign(@Valid Taco design, Errors errors){
         if (errors.hasErrors()){
