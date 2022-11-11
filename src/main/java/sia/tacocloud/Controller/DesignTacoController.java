@@ -5,12 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.annotation.*;
 import sia.tacocloud.Ingredient;
 import sia.tacocloud.Ingredient.Type;
+import sia.tacocloud.Order;
 import sia.tacocloud.Repository.JdbcIngredientRepository;
 import sia.tacocloud.Repository.TacoRepository;
 import sia.tacocloud.Taco;
@@ -54,6 +52,11 @@ public class DesignTacoController {
         return ingredients.stream()
                 .filter(x -> x.getType().equals(type))
                 .collect(Collectors.toList());
+    }
+
+    @ModelAttribute(name = "order")
+    public Order order(){
+        return new Order();
     }
 
     @PostMapping
