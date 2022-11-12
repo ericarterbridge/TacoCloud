@@ -21,5 +21,7 @@ public class JdbcOrderRepository {
 
         this.orderTacoInserter = new SimpleJdbcInsert(jdbc)
                 .withTableName("Taco_Order_Tacos");
+
+        this.objectMapper = new ObjectMapper();
     }
 }
