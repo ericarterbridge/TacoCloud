@@ -18,5 +18,8 @@ public class JdbcOrderRepository {
         this.orderInserter = new SimpleJdbcInsert(jdbc)
                 .withTableName("Taco_Order")
                 .usingGeneratedKeyColumns("id");
+
+        this.orderTacoInserter = new SimpleJdbcInsert(jdbc)
+                .withTableName("Taco_Order_Tacos");
     }
 }
