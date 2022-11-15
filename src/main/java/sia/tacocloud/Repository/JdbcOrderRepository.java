@@ -6,8 +6,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 import sia.tacocloud.Order;
+import sia.tacocloud.Taco;
 
 import java.util.Date;
+import java.util.List;
 
 @Repository
 public class JdbcOrderRepository implements OrderRepository{
@@ -33,6 +35,11 @@ public class JdbcOrderRepository implements OrderRepository{
     public Order save(Order order) {
         order.setPlacedAt(new Date());
         long orderId = saveOrderDetails(order);
-        return null;
+        order.setId(orderId);
+        List<Taco> tacos = order.getTacos();
+        for (Taco taco : tacos){
+            saveTacoToOrder(taco, orderId);
+        }
+        return order;
     }
 }
