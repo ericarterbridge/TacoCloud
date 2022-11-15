@@ -5,9 +5,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
+import sia.tacocloud.Order;
 
 @Repository
-public class JdbcOrderRepository {
+public class JdbcOrderRepository implements OrderRepository{
 
     private SimpleJdbcInsert orderInserter;
     private SimpleJdbcInsert orderTacoInserter;
@@ -23,5 +24,11 @@ public class JdbcOrderRepository {
                 .withTableName("Taco_Order_Tacos");
 
         this.objectMapper = new ObjectMapper();
+    }
+
+
+    @Override
+    public Order save(Order order) {
+        return null;
     }
 }
