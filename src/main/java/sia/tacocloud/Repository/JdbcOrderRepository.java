@@ -7,6 +7,8 @@ import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.stereotype.Repository;
 import sia.tacocloud.Order;
 
+import java.util.Date;
+
 @Repository
 public class JdbcOrderRepository implements OrderRepository{
 
@@ -29,6 +31,8 @@ public class JdbcOrderRepository implements OrderRepository{
 
     @Override
     public Order save(Order order) {
+        order.setPlacedAt(new Date());
+        long orderId = saveOrderDetails(order);
         return null;
     }
 }
