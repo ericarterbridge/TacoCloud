@@ -10,6 +10,7 @@ import sia.tacocloud.Taco;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class JdbcOrderRepository implements OrderRepository{
@@ -44,6 +45,8 @@ public class JdbcOrderRepository implements OrderRepository{
     }
 
     private long saveOrderDetails(Order order){
-
+        @SuppressWarnings("unchecked")
+        Map<String, Object> values = objectMapper.convertValue(order, Map.class);
+        values.put("placedAt", order.getPlacedAt());
     }
 }
