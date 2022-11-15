@@ -9,6 +9,7 @@ import sia.tacocloud.Order;
 import sia.tacocloud.Taco;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -56,6 +57,9 @@ public class JdbcOrderRepository implements OrderRepository{
     }
 
     private void saveTacoToOrder(Taco taco, long orderId){
-
+        Map<String, Object> values = new HashMap<>();
+        values.put("tacoOrder", orderId);
+        values.put("taco", taco.getId());
+        orderTacoInserter.execute(values);
     }
 }
